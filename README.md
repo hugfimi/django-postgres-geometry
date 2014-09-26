@@ -1,5 +1,7 @@
 django-postgres-geometry
 ========================
+A fork of expobrain/django-postgres-geometry where python requirement has been
+lowered to version 2.6
 
 Exposes [Postgres geometry types][1] into Django model's fields. This package
 doesn't need any extra PostgreSQL extensions to be installed, it uses just the
@@ -11,7 +13,7 @@ Installation
 
 Install the package with:
 
-    pip install git+https://github.com/expobrain/django-postgres-geometry
+    pip install git+https://github.com/hugfimi/django-postgres-geometry
 
 
 Usage

@@ -105,8 +105,18 @@ class PointTests(SimpleTestCase):
 
     def test_less_than(self):
         self.assertTrue(Point() < Point(1, 1))
-        self.assertTrue(Point() <= Point(1, 1))
         self.assertFalse(Point() > Point(1, 1))
+
+    def test_less_equal_than(self):
+        self.assertTrue(Point() <= Point(1, 1))
+        self.assertFalse(Point() >= Point(1, 1))
+
+    def test_greater_than(self):
+        self.assertTrue(Point() < Point(1, 1))
+        self.assertFalse(Point() > Point(1, 1))
+
+    def test_greater_equal_than(self):
+        self.assertTrue(Point() <= Point(1, 1))
         self.assertFalse(Point() >= Point(1, 1))
 
 

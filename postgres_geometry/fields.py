@@ -28,7 +28,7 @@ def require_postgres(fn):
     return wrapper
 
 
-@functools.total_ordering
+#@functools.total_ordering
 class Point(object):
     """
     Describe a point in the space.
@@ -61,7 +61,7 @@ class Point(object):
 
         return Point(float(values['x']), float(values['y']))
 
-    def __init__(self, x=0, y=0):
+    def __init__(self, x=0.0, y=0.0):
         self.x = x
         self.y = y
 
@@ -84,8 +84,23 @@ class Point(object):
 
     def __lt__(self, other):
         return (isinstance(other, self.__class__)
+                and self.x < other.x
+                and self.y < other.y)
+
+    def __le__(self, other):
+        return (isinstance(other, self.__class__)
                 and self.x <= other.x
                 and self.y <= other.y)
+
+    def __gt__(self, other):
+        return (isinstance(other, self.__class__)
+                and self.x > other.x
+                and self.y > other.y)
+
+    def __ge__(self, other):
+        return (isinstance(other, self.__class__)
+                and self.x >= other.x
+                and self.y >= other.y)
 
 
 class Circle(object):
@@ -172,7 +187,8 @@ class PointMixin(object):
         return list(
             Point.from_string(v) for v in re.findall(self.SPLIT_RE, values))
 
-    def _get_prep_value(self, values):
+    @staticmethod
+    def _get_prep_value(values):
         return ','.join(str(v) for v in values) if values else None
 
 
@@ -195,7 +211,7 @@ class SegmentPathField(PointMixin,
 
         values = self._get_prep_value(values)
 
-        return '[{}]'.format(values) if values else None
+        return '[%s]' % values if values else None
 
     def get_prep_lookup(self, lookup_type, value):
         return NotImplementedError(self)
@@ -220,7 +236,7 @@ class PolygonField(PointMixin,
 
         values = self._get_prep_value(values)
 
-        return '({})'.format(values) if values else None
+        return '(%s)' % values if values else None
 
     def get_prep_lookup(self, lookup_type, value):
         return NotImplementedError(self)
