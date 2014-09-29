@@ -57,3 +57,10 @@ docs/_build/
 
 # Mac OS X files
 .DS_Store
+
+# Pycharm settings directory
+.idea
+
+# Vagrant settings directories
+.vagrant
+.vagrantuser
