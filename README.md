@@ -1,6 +1,6 @@
 django-postgres-geometry
 ========================
-A fork of expobrain/django-postgres-geometry where python requirement has been
+A fork of expobrain/django-postgres-geometry where python requirements have been
 lowered to version 2.6
 
 Exposes [Postgres geometry types][1] into Django model's fields. This package
@@ -59,6 +59,7 @@ Todo
 
 Changelog
 =========
+
 
 0.1.3
 -----
