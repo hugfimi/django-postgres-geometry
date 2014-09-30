@@ -188,6 +188,18 @@ class PolygonFieldTests(GeometryFieldTestsMixin, TestCase):
         with self.assertRaisesRegexp(ValueError, "Needs at minimum 3 points"):
             model.save()
 
+    def test_from_string(self):
+        value = "[(0, 0), (1, 0), (1, 1)]"
+        result = [Point(0, 0), Point(1, 0), Point(1, 1)]
+        model = TestModel()
+        model.polygon = value
+        model.save()
+
+        model = TestModel.objects.get(pk=model.pk)
+
+        self.assertIsInstance(model.polygon, list)
+        self.assertEqual(model.polygon, result)
+
 
 class PointFieldTests(GeometryFieldTestsMixin, TestCase):
 

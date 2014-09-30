@@ -52,10 +52,11 @@ class Point(object):
         :raise: ValueError if the given string is not a valid point's
                 representation
         """
+        value = value.replace(' ', '')
         match = re.match(Point.POINT_RE, value)
 
         if not match:
-            raise ValueError("Value {} is not a valid point".format(value))
+            raise ValueError("Value %s is not a valid point" % value)
 
         values = match.groupdict()
 
@@ -130,7 +131,7 @@ class Circle(object):
         match = re.match(Circle.CIRCLE_RE, value)
 
         if not match:
-            raise ValueError("Value {} is not a valid circle".format(value))
+            raise ValueError("Value %s is not a valid circle" % value)
 
         values = match.groupdict()
 
